@@ -44,7 +44,7 @@ describe.only('Actor routes', () => {
     await Actor.create(actor1);
     await Actor.create(actor2);
 
-    const expected = [actor1, actor2];
+    const expected = [{ id: 1, name: actor1.name }, { id: 2, name: actor2.name }];
 
     const res = await request(app)
       .get('/api/v1/actors');
