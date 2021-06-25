@@ -50,5 +50,18 @@ describe('Reviewer routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('gets reviewers by id via a GET route', async () => {
+    const reviewer = await Reviewer.create(reviewer1);
+
+    const res = await request(app)
+      .get(`/api/v1/reviewers/${reviewer.id}`);
+
+    expect(res.body).toEqual({
+      ...reviewer.toJSON(),
+      updateAt: expect.any(String),
+      createAt: expect.any(String)
+    });
+  });
+
 });
 
