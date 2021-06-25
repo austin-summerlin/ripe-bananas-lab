@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import Actor from '../lib/models/Actor.js';
 
-describe('Actor routes', () => {
+describe.only('Actor routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
   });
@@ -20,7 +20,7 @@ describe('Actor routes', () => {
     expect(res.body).toEqual({
       id: 1,
       name: 'Bean Benny B',
-      dob: '1969-04-20',
+      dob: '1969-04-20T00:00:00.000Z',
       pob: 'Coolzone, USA',
       updatedAt: expect.any(String),
       createdAt: expect.any(String)
