@@ -5,12 +5,12 @@ import app from '../lib/app.js';
 import Studio from '../lib/models/Studio.js';
 
 
-let taStation = {
+const taStation = {
   name: 'TA Station',
   city: 'Portland',
   state: 'Oregon',
   country: 'US'
-}
+};
 
 describe('demo routes', () => {
   beforeEach(() => {
@@ -34,14 +34,16 @@ describe('demo routes', () => {
   });
 
   it('get a studio by id via GET', async () => {
-    const studio = await Studio.create({
-      name: 'TA Station',
-      city: 'Portland',
-      state: 'Oregon',
-      country: 'US'
-    })
+    const studio = await Studio.create(taStation);
 
+    const res = await request(app)
+      .get(`/api/v1/studios/${studio.id}`);
 
-  })
+    expect(res.body).toEqual({
+      ...studio.toJSON(),
+      updatedAt: expect.any(String),
+      createdAt: expect.any(String)
+    });
+  });
 
 });
