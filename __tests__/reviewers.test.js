@@ -58,8 +58,8 @@ describe('Reviewer routes', () => {
 
     expect(res.body).toEqual({
       ...reviewer.toJSON(),
-      updateAt: expect.any(String),
-      createAt: expect.any(String)
+      updatedAt: reviewer.updatedAt.toISOString(),
+      createdAt: reviewer.createdAt.toISOString()
     });
   });
 
