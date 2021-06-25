@@ -31,4 +31,24 @@ describe('Reviewer routes', () => {
     });
   });
 
+  it('get all reviewers via GET', async () => {
+    await Reviewer.create(reviewer1);
+    await Reviewer.create(reviewer2);
+
+    const expected = [{
+      id: 1,
+      ...reviewer1
+    },
+    {
+      id: 2,
+      ...reviewer2
+    }];
+
+    const res = await request(app)
+      .get('/api/v1/reviewers');
+
+    expect(res.body).toEqual(expected);
+  });
+
 });
+
