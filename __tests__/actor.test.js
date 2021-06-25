@@ -15,7 +15,7 @@ const actor2 = {
   pob: 'Brooklyn, USA'
 };
 
-describe.only('Actor routes', () => {
+describe.skip('Actor routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
   });
