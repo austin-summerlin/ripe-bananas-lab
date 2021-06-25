@@ -12,6 +12,13 @@ const taStation = {
   country: 'US'
 };
 
+const taStation2 = {
+  name: 'TA Station 2',
+  city: 'Pasadena',
+  state: 'California',
+  country: 'US'
+};
+
 describe('demo routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
@@ -44,6 +51,28 @@ describe('demo routes', () => {
       updatedAt: expect.any(String),
       createdAt: expect.any(String)
     });
+  });
+
+  it('gets all studios via GET', async () => {
+    
+    await Studio.create(taStation);
+    await Studio.create(taStation2);
+
+    const expected = [
+      {
+        id: 1,
+        name: taStation.name
+      },
+      {
+        id: 2,
+        name: taStation2.name
+      }
+    ];
+
+    const res = await request(app)
+      .get('/api/v1/studios');
+    
+    expect(res.body).toEqual(expected);
   });
 
 });
