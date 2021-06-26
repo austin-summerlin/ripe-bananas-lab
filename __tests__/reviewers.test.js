@@ -63,5 +63,24 @@ describe('Reviewer routes', () => {
     });
   });
 
-});
+  it('updates a reviewer using PUT', async () => {
+    const reviewer = await Reviewer.create({
+      name: 'Judge Jimmy',
+      company: 'The Court of Law'
+    });
 
+    reviewer.name = 'Judge Judy';
+
+    const res = await request(app)
+      .put(`/api/v1/reviewers/${reviewer.id}`)
+      .send(reviewer);
+
+    expect(res.body).toEqual({
+      ...reviewer.toJSON(),
+      updatedAt: reviewer.updatedAt.toISOString(),
+      createdAt: reviewer.createdAt.toISOString()
+    });
+
+  });
+
+});
