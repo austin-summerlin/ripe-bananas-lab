@@ -91,4 +91,17 @@ describe('Reviewer routes', () => {
 
   });
 
+  it('deletes a reviewer using delete', async () => {
+    const reviewer = Reviewer.create({
+      name: 'Judge Judy',
+      company: 'The Court of Law'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/reviewers/${reviewer.id}`)
+      .send(reviewer);
+
+    expect(res.body).toEqual(reviewer);
+  });
+
 });
