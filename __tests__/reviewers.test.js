@@ -73,13 +73,21 @@ describe('Reviewer routes', () => {
 
     const res = await request(app)
       .put(`/api/v1/reviewers/${reviewer.id}`)
-      .send(reviewer);
+      .send({
+        name: 'Judge Judy',
+        company: 'The Court of Law'
+      });
 
     expect(res.body).toEqual({
       ...reviewer.toJSON(),
-      updatedAt: reviewer.updatedAt.toISOString(),
+      name: 'Judge Judy',
+      company: 'The Court of Law',
+      updatedAt: expect.any(String),
       createdAt: reviewer.createdAt.toISOString()
     });
+
+    expect(res.body.updatedAt).not
+      .toEqual(reviewer.updatedAt.toISOString());
 
   });
 
