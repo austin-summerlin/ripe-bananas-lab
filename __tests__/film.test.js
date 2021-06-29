@@ -65,22 +65,26 @@ describe('Film routes', () => {
         title: 'Revenge of the Beans',
         released: 2021,
         StudioId: studio.id,
-        studio:
+        Studio:
         {
-          id: 1,
-          name: 'TA Station'
-        }
+          id: studio.id,
+          name: studio.name
+        },
+        updatedAt: expect.any(String),
+        createdAt: expect.any(String)
       },
       {
         id: 2,
         title: 'Revenge of the Beans 2: Electric Boogaloo',
         released: 2022,
         StudioId: studio.id,
-        studio:
+        Studio:
         {
-          id: 1,
-          name: 'TA Station'
-        }
+          id: studio.id,
+          name: studio.name
+        },
+        updatedAt: expect.any(String),
+        createdAt: expect.any(String)
       }
     ];
 
