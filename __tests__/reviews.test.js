@@ -16,7 +16,6 @@ describe('Review routes', () => {
   });
 
   it('creates a review using POST', async () => {
-    await Review.create(review1);
     const res = await request(app)
       .post('/api/v1/reviews')
       .send(review1);
@@ -25,6 +24,8 @@ describe('Review routes', () => {
       id: 1,
       rating: 5,
       review: 'great film.',
+      film: null,
+      reviewer: null,
       createdAt: expect.any(String),
       updatedAt: expect.any(String)
     });
