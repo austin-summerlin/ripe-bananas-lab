@@ -13,7 +13,7 @@ const reviewer2 = {
   company: 'The Court of Law'
 };
 
-describe.skip('Reviewer routes', () => {
+describe('Reviewer routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
   });

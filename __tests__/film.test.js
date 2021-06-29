@@ -91,7 +91,7 @@ describe('Film routes', () => {
     expect(res.body).toEqual(expected);
   });
 
-  it.only('gets a films by ID using GET', async () => {
+  it('gets a films by ID using GET', async () => {
     const studio = await Studio.create(taStation);
     await Film.create({
       title: 'Revenge of the Beans',

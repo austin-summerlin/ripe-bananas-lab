@@ -19,7 +19,7 @@ const taStation2 = {
   country: 'US'
 };
 
-describe.skip('demo routes', () => {
+describe('demo routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
   });

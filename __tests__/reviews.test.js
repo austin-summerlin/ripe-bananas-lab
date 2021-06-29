@@ -18,7 +18,7 @@ const review2 = {
   // film: 1
 };
 
-describe.skip('Review routes', () => {
+describe('Review routes', () => {
   beforeEach(() => {
     return db.sync({ force: true });
   });
