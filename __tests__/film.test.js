@@ -37,21 +37,23 @@ describe('Film routes', () => {
     expect(res.body).toEqual({
       id: 1,
       ...film1,
-      StudioId: studio.studioId,
+      StudioId: 1,
       updatedAt: expect.any(String),
       createdAt: expect.any(String)
     });
   });
 
-  it('gets all films via GET', async () => {
+  it.only('gets all films via GET', async () => {
     const studio = await Studio.create(taStation);
     await Film.create({
       title: 'Revenge of the Beans',
-      released: 2021
+      released: 2021,
+      StudioId: 1
     });
     await Film.create({
       title: 'Revenge of the Beans 2: Electric Boogaloo',
-      released: 2022
+      released: 2022,
+      StudioId: 1
     });
 
     const res = await request(app)
@@ -61,12 +63,24 @@ describe('Film routes', () => {
       {
         id: 1,
         title: 'Revenge of the Beans',
-        released: 2021
+        released: 2021,
+        StudioId: studio.id,
+        studio:
+        {
+          id: 1,
+          name: 'TA Station'
+        }
       },
       {
         id: 2,
         title: 'Revenge of the Beans 2: Electric Boogaloo',
-        released: 2022
+        released: 2022,
+        StudioId: studio.id,
+        studio:
+        {
+          id: 1,
+          name: 'TA Station'
+        }
       }
     ];
 
