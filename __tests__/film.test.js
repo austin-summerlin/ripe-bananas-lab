@@ -23,7 +23,7 @@ const taStation = {
   country: 'US'
 };
 
-describe('Film routes', () => {
+describe.skip('Film routes', () => {
   beforeEach(() => {
     return db.sync({ force:true });
   });
