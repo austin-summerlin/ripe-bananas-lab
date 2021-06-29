@@ -71,5 +71,23 @@ describe('Film routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('gets a films by ID using GET', async () => {
+    await Film.create(film1);
+
+    const res = await request(app)
+      .get('/api/v1/films/1');
+
+    const expected = {
+      id: 1,
+      title: 'Revenge of the Beans',
+      released: 2021,
+      studio: 1,
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String)
+    };
+
+    expect(res.body).toEqual(expected);
+
+  });
 });
 
