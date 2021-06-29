@@ -54,7 +54,7 @@ describe.skip('demo routes', () => {
   });
 
   it('gets all studios via GET', async () => {
-    
+
     await Studio.create(taStation);
     await Studio.create(taStation2);
 
@@ -71,7 +71,7 @@ describe.skip('demo routes', () => {
 
     const res = await request(app)
       .get('/api/v1/studios');
-    
+
     expect(res.body).toEqual(expected);
   });
 
