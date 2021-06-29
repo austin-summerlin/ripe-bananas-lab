@@ -69,4 +69,19 @@ describe('Review routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('deletes a review using DELETE', async () => {
+    const review = await Review.create({
+      rating: 5,
+      // reviewer: 1,
+      review: 'great film.',
+      // film: 1
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/review/${review.id}`)
+      .send(review);
+
+    expect(res.body).not.toEqual(review);
+  });
 });
