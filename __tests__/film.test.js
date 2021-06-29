@@ -23,19 +23,21 @@ const taStation = {
   country: 'US'
 };
 
-describe.skip('Film routes', () => {
+describe('Film routes', () => {
   beforeEach(() => {
-    return db.sync({ force:true });
+    return db.sync({ force: true });
   });
 
-  it('creates an actor via POST', async () => {
+  it('creates a film via POST', async () => {
+    const studio = await Studio.create(taStation);
     const res = await request(app)
       .post('/api/v1/films')
-      .send(film1);
+      .send({ ...film1, StudioId: studio.id });
 
     expect(res.body).toEqual({
       id: 1,
       ...film1,
+      StudioId: studio.studioId,
       updatedAt: expect.any(String),
       createdAt: expect.any(String)
     });
