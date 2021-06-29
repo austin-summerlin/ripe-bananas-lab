@@ -43,7 +43,7 @@ describe('Film routes', () => {
     });
   });
 
-  it.only('gets all films via GET', async () => {
+  it('gets all films via GET', async () => {
     const studio = await Studio.create(taStation);
     await Film.create({
       title: 'Revenge of the Beans',
@@ -91,8 +91,13 @@ describe('Film routes', () => {
     expect(res.body).toEqual(expected);
   });
 
-  it('gets a films by ID using GET', async () => {
-    await Film.create(film1);
+  it.only('gets a films by ID using GET', async () => {
+    const studio = await Studio.create(taStation);
+    await Film.create({
+      title: 'Revenge of the Beans',
+      released: 2021,
+      StudioId: 1
+    });
 
     const res = await request(app)
       .get('/api/v1/films/1');
@@ -101,13 +106,17 @@ describe('Film routes', () => {
       id: 1,
       title: 'Revenge of the Beans',
       released: 2021,
-      studio: 1,
-      createdAt: expect.any(String),
-      updatedAt: expect.any(String)
+      StudioId: studio.id,
+      Studio:
+      {
+        id: studio.id,
+        name: studio.name
+      },
+      updatedAt: expect.any(String),
+      createdAt: expect.any(String)
     };
 
     expect(res.body).toEqual(expected);
-
   });
 });
 
